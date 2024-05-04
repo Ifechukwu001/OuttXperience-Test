@@ -22,7 +22,7 @@ def get_book(id: int, db: Session = Depends(get_db)):
     return book
 
 
-@router.post("/books/", response_model=books.Book)
+@router.post("/books/", response_model=books.Book, status_code=201)
 def create_book(book_data: books.Book, db: Session = Depends(get_db)):
     book = transactions.create_book(db, book_data)
     return book
