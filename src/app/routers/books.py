@@ -31,6 +31,8 @@ def create_book(book_data: books.Book, db: Session = Depends(get_db)):
 @router.put("/books/{id}", response_model=books.Book)
 def update_book(id: int, book_data: books.Book, db: Session = Depends(get_db)):
     book = transactions.update_book(db, id, book_data)
+    if book is None:
+        raise HTTPException(status_code=404, detail="Book not found")
     return book
 
 

@@ -22,10 +22,11 @@ def create_book(db: Session, book: schemas.Book):
 
 def update_book(db: Session, book_id: int, book: schemas.Book):
     book_object = db.query(Book).get(book_id)
-    book_object.update(**book.model_dump())  # type: ignore
-    db.commit()
-    db.refresh(book_object)
-    return book_object
+    if book_object:
+        book_object.update(**book.model_dump())
+        db.commit()
+        db.refresh(book_object)
+        return book_object
 
 
 def delete_book(db: Session, book_id: int):
