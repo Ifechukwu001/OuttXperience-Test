@@ -35,5 +35,21 @@ Your task is to develop a simple CRUD (Create, Read, Update, Delete) application
         fastapi dev src/app/main.py
     ```
 
+## Tests
 
+The tests are created using the pytest library and located in the tests module.
+
+To run the tests (ensure that requirements are installed as shown in [setup](#setup))
+```bash
+    pytest -v
+```
+
+## Container
+
+An image can be created for the application from the Dockerfile. 
+
+To build the image, from the root of the repository run the command (docker must be installed):
+```bash
+    docker build -t ifechukwu001:v1 .
+```
 
