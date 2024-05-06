@@ -31,7 +31,7 @@ def update_book(db: Session, book_id: int, book: schemas.Book):
 
 
 def delete_book(db: Session, book_id: int):
-    book_object = db.query(Book).get(book_id)
+    book_object = db.query(Book).filter(Book.id == book_id).first()
     if book_object:
         db.delete(book_object)
         db.commit()
