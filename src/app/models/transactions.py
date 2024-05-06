@@ -9,7 +9,7 @@ def get_books(db: Session):
 
 
 def get_book(db: Session, book_id: int):
-    return db.query(Book).get(book_id)
+    return db.query(Book).filter(Book.id == book_id).first()
 
 
 def create_book(db: Session, book: schemas.Book):
@@ -21,9 +21,10 @@ def create_book(db: Session, book: schemas.Book):
 
 
 def update_book(db: Session, book_id: int, book: schemas.Book):
-    book_object = db.query(Book).get(book_id)
+    book_object = db.query(Book).filter(Book.id == book_id).first()
     if book_object:
-        book_object.update(**book.model_dump())
+        for key, value in book.model_dump().items():
+            setattr(book_object, key, value)
         db.commit()
         db.refresh(book_object)
         return book_object
