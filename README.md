@@ -34,6 +34,8 @@ Your task is to develop a simple CRUD (Create, Read, Update, Delete) application
     ```bash
         fastapi dev src/app/main.py
     ```
+## Swagger Documentation
+The swagger documentation is available on the `/docs` endpoint.
 
 ## Tests
 
